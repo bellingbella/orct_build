@@ -29,13 +29,16 @@ codebuild:
 		INP=$$(./parse.py $$OBJ 1); \
 		OUTP=$$(./parse.py $$OBJ 2); \
 		if [ "$$PRE" = "AS" ]; then \
+			echo "AS $(DIR)/$$INP"; \
 			$(AS) $(AS_FLAGS) "$(DIR)/$$OUTP" "$(DIR)/$$INP"; \
 		fi; \
 		if [ "$$PRE" = "CC" ]; then \
+			echo "CC $(DIR)/$$INP"; \
 			$(CC) $(CC_FLAGS) -c -o "$(DIR)/$$OUTP" "$(DIR)/$$INP"; \
 		fi; \
 	done
 	
+	echo "LD "
 	$(LD) $(LD_FLAGS) -T $(DIR)/link.ld -o $(DIR)/$(shell cat $(DIR)/target) $(DIR)/*.o
 	
  
@@ -44,3 +47,4 @@ cleanbuild:
 	@for OBJ in $(SRCOBJ); do \
 		rm -fr $(DIR)/*.o; \
 	done
+	rm -fr $(DIR)/$(shell cat $(DIR)/target)
