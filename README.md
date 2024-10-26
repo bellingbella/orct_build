@@ -6,4 +6,4 @@ Orcotail (ORCT) Kernel Builder
 - To add an object directory, open the root's Makefile and add your object directory to the variable `OBJECTS`.
 
 # License
-GPL-3.0
+GPL-3.0 (OPEN)[https://www.gnu.org/licenses/gpl-3.0.en.html]
